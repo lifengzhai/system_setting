@@ -9,7 +9,15 @@
     [registrar addMethodCallDelegate:instance channel:channel];
 }
 
-- (void) handelMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
+- (instancetype)initWithViewController:(UIViewController *)viewController {
+    self = [super init];
+    if (self) {
+        self.viewController = viewController;
+    }
+    return self;
+}
+
+- (void) handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if ([@"gotoSetting" isEqualToString:call.method]) {
         NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
