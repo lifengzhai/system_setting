@@ -4,7 +4,8 @@
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:@"system_setting" binaryMessenger:[registrar messenger]];
-    SystemSettingPlugin *instance = [[SystemSettingPlugin alloc] init];
+    UIViewController *viewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    SystemSettingPlugin *instance = [[SystemSettingPlugin alloc] initWithViewController:viewController];
     [registrar addMethodCallDelegate:instance channel:channel];
 }
 
